@@ -1,24 +1,14 @@
-# README
+# Login users demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Built on my coworker Daniel Ackerman's implementation.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+```
+TODO
+```
 
-* System dependencies
 
-* Configuration
+## Models
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![](erd/erd.jpg)

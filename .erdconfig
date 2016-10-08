@@ -14,7 +14,7 @@ orientation: horizontal
 polymorphism: true
 sort: true
 warn: true
-title: ASH ERD
+title: ERD
 exclude: ApplicationRecord
 only: null
 only_recursion_depth: null

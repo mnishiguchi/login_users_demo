@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20161008144522) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "logins", force: :cascade do |t|
+  create_table "identities", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20161008144522) do
     t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.index ["backend_user_type", "backend_user_id"], name: "index_logins_on_backend_user_type_and_backend_user_id", using: :btree
-    t.index ["email"], name: "index_logins_on_email", unique: true, using: :btree
-    t.index ["user_id"], name: "index_logins_on_user_id", using: :btree
+    t.index ["backend_user_type", "backend_user_id"], name: "index_identities_on_backend_user_type_and_backend_user_id", using: :btree
+    t.index ["email"], name: "index_identities_on_email", unique: true, using: :btree
+    t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
   end
 
   create_table "management_clients", force: :cascade do |t|
@@ -56,12 +56,6 @@ ActiveRecord::Schema.define(version: 20161008144522) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["account_executive_id"], name: "index_property_clients_on_account_executive_id", using: :btree
-  end
-
-  create_table "super_users", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

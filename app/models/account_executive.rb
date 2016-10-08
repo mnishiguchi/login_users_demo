@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: account_executives
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class AccountExecutive < ApplicationRecord
   include BackendUser
 
@@ -10,10 +20,9 @@ class AccountExecutive < ApplicationRecord
     [management_clients.map(&:property_clients), property_clients].flatten.uniq
   end
 
-
   def can_access(model)
     case model
-    when Admin, MitsContainer
+    when Admin
       false
     when PropertyClient
       property_clients.include?(model)
