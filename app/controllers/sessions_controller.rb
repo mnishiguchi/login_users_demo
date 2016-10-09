@@ -4,21 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-
-    if request.env['omniauth.auth']
-      ap request.env['omniauth.auth']
-
-      begin
-        identity = Identity.from_omniauth(request.env['omniauth.auth'])
-        session[:user_id] = identity.id
-        flash[:success] = "Successfully authenticated with #{request.env['omniauth.auth']["provider"].capitalize}"
-      rescue
-        flash[:warning] = "There was an error while trying to authenticate you."
-      end
-      redirect_to(root_path) and return
-    end
-
-
     email, password = session_params.slice(:email, :password).values
 
     identity = Identity.find_by(email: email.downcase)
@@ -45,9 +30,31 @@ class SessionsController < ApplicationController
     end
   end
 
+  def omniauth_callback
+    if request.env['omniauth.auth']
+      ap request.env['omniauth.auth']
+
+      begin
+        identity = Identity.from_omniauth(request.env['omniauth.auth'])
+        log_in(identity)
+        provider_name = request.env['omniauth.auth']["provider"].capitalize
+        flash[:success] = "Successfully authenticated with #{provider_name}"
+      rescue
+        flash[:warning] = "There was an error while trying to authenticate you."
+      end
+      redirect_to(current_user || root_url)
+    end
+  end
+
   def destroy
     log_out
     flash[:notice] = "You have successfully logged out."
     redirect_to root_url
   end
+
+  private
+
+    def session_params
+      params.require(:session).permit(:email, :password)
+    end
 end

@@ -37,17 +37,6 @@ Identity.create!(
 )
 
 
-# Create a registered user.
-masatoshi = User.create!(
-  name: "Masatoshi"
-)
-Identity.create!(
-  user:                  user,
-  email:                 "nishiguchi.masa@gmail.com",
-  password:              "password",
-  password_confirmation: "password"
-)
-
 # ---
 # General backend users
 # ---
@@ -96,6 +85,22 @@ property_client = account_executive.property_clients.create!(
 Identity.create!(
   backend_user:          property_client,
   email:                 "property_client@example.com",
+  password:              "password",
+  password_confirmation: "password"
+)
+
+
+# ---
+# Create Masa as an admin who has a facebook account.
+# ---
+
+
+masatoshi = Admin.create!(
+  name: "Masatoshi"
+)
+Identity.create!(
+  backend_user:          masatoshi,
+  email:                 "nishiguchi.masa@gmail.com",
   password:              "password",
   password_confirmation: "password"
 )
