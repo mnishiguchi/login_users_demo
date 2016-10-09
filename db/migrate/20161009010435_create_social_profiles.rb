@@ -12,8 +12,7 @@ class CreateSocialProfiles < ActiveRecord::Migration[5.0]
       t.text :others
       t.text :credentials
       t.text :raw_info
-      t.references :backend_user, polymorphic: true, index: true
-      t.references :user,                            index: true
+      t.references :identity, index: true
 
       t.timestamps
     end

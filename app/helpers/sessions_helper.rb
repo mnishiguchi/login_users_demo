@@ -12,9 +12,6 @@ module SessionsHelper
   end
 
   def current_backend_user
-
-    binding.pry
-
     @current_backend_user ||= (current_identity&.backend_user)
   end
 
@@ -39,20 +36,22 @@ module SessionsHelper
   end
 
   def link_to_user_page(text, options={})
-    url = root_url
     url = if current_user
-      user_url(current_user)
-    elsif current_backend_user
-      user_url(current_backend_user.identity.user)
-    end
-    link_to text, url
+            user_url(current_user)
+          elsif current_backend_user
+            user_url(current_backend_user.identity.user)
+          else
+            root_url
+          end
+    link_to(text, url)
   end
 
   def link_to_backend_user_page(text, options={})
-    url = root_url
     url = if current_backend_user
-      send("#{current_backend_user.class.name.underscore}_path", current_identity.backend_user_id)
-    end
-    link_to text, url
+            send("#{current_backend_user.class.name.underscore}_path", current_identity.backend_user_id)
+          else
+            root_url
+          end
+    link_to(text, url)
   end
 end

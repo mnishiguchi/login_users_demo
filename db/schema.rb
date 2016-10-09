@@ -70,14 +70,11 @@ ActiveRecord::Schema.define(version: 20161009010435) do
     t.text     "others"
     t.text     "credentials"
     t.text     "raw_info"
-    t.string   "backend_user_type"
-    t.integer  "backend_user_id"
-    t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["backend_user_type", "backend_user_id"], name: "index_social_profiles_on_backend_user_type_and_backend_user_id", using: :btree
+    t.integer  "identity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["identity_id"], name: "index_social_profiles_on_identity_id", using: :btree
     t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
-    t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

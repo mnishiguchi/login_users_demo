@@ -10,5 +10,4 @@
 
 class User < ApplicationRecord
   has_one :identity
-  has_many :social_profiles
 end

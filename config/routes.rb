@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :property_clients, only: [:show]
 
   # # Omniauth
-  # get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
 end

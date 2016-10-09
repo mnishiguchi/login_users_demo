@@ -27,7 +27,7 @@ Identity.destroy_all
 
 # Create a registered user.
 user = User.create!(
-  name: "Masatoshi"
+  name: "Example user"
 )
 Identity.create!(
   user:                  user,
@@ -36,6 +36,17 @@ Identity.create!(
   password_confirmation: "password"
 )
 
+
+# Create a registered user.
+masatoshi = User.create!(
+  name: "Masatoshi"
+)
+Identity.create!(
+  user:                  user,
+  email:                 "nishiguchi.masa@gmail.com",
+  password:              "password",
+  password_confirmation: "password"
+)
 
 # ---
 # General backend users
