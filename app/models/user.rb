@@ -10,5 +10,5 @@
 
 class User < ApplicationRecord
   has_one :identity
-  accepts_nested_attributes_for :identity
+  has_many :social_profiles
 end

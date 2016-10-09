@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008144522) do
+ActiveRecord::Schema.define(version: 20161009010435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,28 @@ ActiveRecord::Schema.define(version: 20161008144522) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["account_executive_id"], name: "index_property_clients_on_account_executive_id", using: :btree
+  end
+
+  create_table "social_profiles", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "url"
+    t.string   "image_url"
+    t.string   "description"
+    t.text     "others"
+    t.text     "credentials"
+    t.text     "raw_info"
+    t.string   "backend_user_type"
+    t.integer  "backend_user_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["backend_user_type", "backend_user_id"], name: "index_social_profiles_on_backend_user_type_and_backend_user_id", using: :btree
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
